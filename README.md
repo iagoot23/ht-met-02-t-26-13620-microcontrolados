@@ -6,15 +6,14 @@
 
 ## Cronograma Presencial
 
-- 26/11: Apresentação da UC, microcontroladores e segurança no laboratório
-- 03/12: Algoritmos, fluxogramas e o primeiro programa
+- 03/12: Microcontroladores e o primeiro programa
 - 10/12: Tipos de dados e expressões
-- 16/12: Estruturas de decisão e repetição; entrada e saída de dados
+- 16/12: Decisão, repetição e entrada de dados
 - 17/12: Revisão e atividade em sala
 - 20/01: Retomada e interrupções
 - 21/01: Entradas e saídas analógicas e sensores
 - 27/01: Protocolos de comunicação e Internet das Coisas
-- 28/01: Avaliação teórica; ordem de serviço e planejamento da montagem
+- 28/01: Ordem de serviço e planejamento da montagem
 - 03/02: Bancada: montagem, gravação e testes
-- 04/02: Bancada: acionamento de cargas e melhoria contínua
+- 04/02: Acionamento de cargas e melhoria contínua
 - 17/02: Avaliação prática e encerramento

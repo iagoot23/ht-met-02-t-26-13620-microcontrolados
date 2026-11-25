@@ -313,6 +313,7 @@ kbd{font-family:var(--serif);font-size:.82em;font-weight:700;background:#fff;col
 .daycover .t1{font-size:104px;letter-spacing:-.01em;line-height:1.08}
 .daycover .t2{font-size:104px;letter-spacing:-.01em;line-height:1.08;color:var(--blue);font-style:italic}
 .daycover .lead{margin:30px 0 30px}
+.daycover .engrave+.agenda{margin-top:34px}
 .agenda{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,1fr);gap:18px}
 .agenda li{background:var(--gray-0);border-top:8px solid var(--blue);padding:18px 22px 20px;border-radius:0 0 12px 12px;font-size:28px;line-height:1.35}
 .agenda li b{display:block;font-size:27px;color:var(--blue);margin-bottom:6px}
@@ -337,6 +338,12 @@ kbd{font-family:var(--serif);font-size:.82em;font-weight:700;background:#fff;col
 .daymap.dense .daycard .d{font-size:18px}
 .daymap.dense .daycard .t{font-size:18px;line-height:1.2}
 .daymap.dense .daycard .k{font-size:16px}
+.daymap.mid{grid-template-columns:repeat(6,1fr);gap:12px}
+.daymap.mid .daycard{padding:10px 14px;gap:4px}
+.daymap.mid .daycard .n{font-size:22px;padding:1px 12px}
+.daymap.mid .daycard .d{font-size:20px}
+.daymap.mid .daycard .t{font-size:22px;line-height:1.25}
+.daymap.mid .daycard .k{font-size:19px}
 .asyncrow{display:flex;gap:24px;margin-top:16px}
 .asyncrow div{flex:1;border:4px dashed var(--gray-2);border-radius:16px;padding:10px 20px;font-size:23px}
 .asyncrow b{color:var(--blue)}
@@ -615,7 +622,7 @@ html.shot *,html.shot *::before,html.shot *::after{animation-duration:0s!importa
       <div class="card anim"><h3>Proteus 8 Professional</h3><p>Simulador profissional com bibliotecas de Arduino e sensores; roda o arquivo <code>.hex</code> gerado pela IDE.</p></div>
       <div class="card anim"><h3>Arduino IDE 2</h3><p>Escrever, compilar e gravar o firmware na placa real pelo cabo USB.</p></div>
       <div class="card anim"><h3>Arduino Uno R3</h3><p>Placa com o microcontrolador ATmega328P: 14 pinos digitais (6 com PWM) e 6 entradas analógicas.</p></div>
-      <div class="card anim"><h3>Componentes da bancada</h3><p>Protoboard, LEDs, botões, sensores, display LCD I2C e módulo relé.</p></div>
+      <div class="card anim"><h3>Componentes da bancada</h3><p>Protoboard, LEDs, botões, sensores, display LCD 16×2 e módulo relé.</p></div>
       <div class="card anim"><h3>Multímetro</h3><p>Testar continuidade, tensões e correntes do circuito montado.</p></div>
     </div>
   </div>
@@ -2656,7 +2663,7 @@ FC.d7ldr={w:900,h:820,label:'Fluxograma do LED automático',
     </h1>
     <ol class="agenda anim">
       <li><b>13:30 · Aula 1</b>Protocolos de comunicação: UART, I2C e SPI</li>
-      <li><b>14:15 · Aula 2</b>Prática: display LCD I2C e sensor ultrassônico HC-SR04</li>
+      <li><b>14:15 · Aula 2</b>Prática: display LCD 16×2 e sensor ultrassônico HC-SR04</li>
       <li><b>15:00 · Aula 3</b>Simulação de circuitos microcontrolados no Proteus 8</li>
       <li><b>16:00 · Aula 4</b>Internet das Coisas (IoT): definição, aplicação e protocolos (MQTT, HTTP) com ESP32</li>
       <li><b>16:45 · Aula 5</b>Tecnologias habilitadoras da indústria avançada na instalação; orientação do Formulário II (dever no Classroom)</li>
@@ -2794,49 +2801,50 @@ FC.d7ldr={w:900,h:820,label:'Fluxograma do LED automático',
 <section class="slide" data-theme="Dia 7 · Simulação 9">
   <div class="content">
     <h2 class="title sm anim">Simulação 9: medidor de distância · montagem</h2>
-    <div class="two wl" style="grid-template-columns:1.2fr .8fr">
+    <div class="two wl" style="grid-template-columns:1.25fr .75fr">
       <div class="fig anim"><div class="w" data-w="wiring" data-d="d5lcd"></div></div>
       <div>
-        <table class="tbl sm anim" style="margin-bottom:16px">
-          <thead><tr><th>Pino do módulo</th><th>Arduino</th></tr></thead>
+        <table class="tbl sm anim" style="margin-bottom:14px">
+          <thead><tr><th>Ligação</th><th>Arduino</th></tr></thead>
           <tbody>
-            <tr><td>HC-SR04 VCC · GND</td><td>5V · GND</td></tr>
-            <tr><td>HC-SR04 TRIG</td><td>D9</td></tr>
-            <tr><td>HC-SR04 ECHO</td><td>D10</td></tr>
-            <tr><td>LCD I2C GND · VCC</td><td>GND · 5V</td></tr>
-            <tr><td>LCD I2C SDA · SCL</td><td>A4 · A5</td></tr>
+            <tr><td>HC-SR04 TRIG · ECHO</td><td>D10 · D9</td></tr>
+            <tr><td>LCD RS · E</td><td>D7 · D6</td></tr>
+            <tr><td>LCD D4 a D7</td><td>D5 a D2</td></tr>
+            <tr><td>LCD VSS, RW, K e GND do sensor</td><td>GND</td></tr>
+            <tr><td>LCD VDD e VCC do sensor</td><td>5V</td></tr>
+            <tr><td>LCD V0 (contraste)</td><td>potenciômetro 10 kΩ</td></tr>
+            <tr><td>LCD A (luz de fundo)</td><td>5V por 220 Ω</td></tr>
           </tbody>
         </table>
-        <p class="small anim">No Tinkercad, use o <b>Sensor de distância ultrassônico (4 pinos)</b> e o <b>LCD 16 × 2 (I2C)</b>. Durante a simulação, clique no sensor e arraste o objeto para mudar a distância.</p>
+        <p class="small anim">No Tinkercad: <b>LCD 16 × 2</b> (sem I2C) e <b>sensor ultrassônico de 4 pinos</b>.</p>
       </div>
     </div>
   </div>
 </section>
 <script>
-WR.d5lcd={w:1260,h:800,label:'HC-SR04 nos pinos 9 e 10 e LCD I2C em A4 e A5',
-  p:[['uno','U',70,260],['sonar','S',760,40,{l:'HC-SR04'}],['lcd','L',800,470,{l:'LCD 16×2 I2C',l1:'Distancia:',l2:'23.5 cm'}]],
-  f:[['o','U.9','v:240','h:865','S.TRIG'],['b','U.10','v:220','h:905','S.ECHO'],
-     ['r','U.5V','v:740','h:24','v:14','h:740','v:200','h:825','S.VCC'],['k','U.GND','v:30','h:1040','v:200','h:945','S.GND'],
-     ['g','U.A5','v:680','h:750','v:598','L.SCL'],['y','U.A4','v:700','h:770','v:566','L.SDA'],
-     ['r','U.5V','v:770','h:790','v:534','L.VCC'],['k','U.GNDb','v:750','h:785','v:502','L.GND']]};
+WR.d5lcd={w:1320,h:900,label:'HC-SR04 em D10 e D9 e LCD 16×2 paralelo em D7 a D2',
+  p:[['uno','U',60,440],['sonar','S',80,140,{l:'HC-SR04'}],['lcdp','L',760,80,{l:'LCD 16×2',l1:'Distancia:',l2:'23.5 cm'}]],
+  f:[['b','U.9','v:320','h:225','S.ECHO'],['o','U.10','v:340','h:185','S.TRIG'],
+     ['o','U.7','v:300','h:885','L.RS'],['o','U.6','v:318','h:945','L.E'],
+     ['b','U.5','v:336','h:1095','L.D4'],['b','U.4','v:354','h:1125','L.D5'],['b','U.3','v:372','h:1155','L.D6'],['b','U.2','v:390','h:1185','L.D7']],
+  t:[[145,300,'5V','sm','middle'],[265,300,'GND','sm','middle']]};
 </script>
 <section class="slide" data-theme="Dia 7 · Simulação 9">
   <div class="content">
     <h2 class="title sm anim">Simulação 9: fluxograma e código</h2>
     <div class="two" style="grid-template-columns:.75fr 1.25fr;gap:36px">
       <div class="fig anim"><div class="w" data-w="flow" data-f="d5lcd"></div></div>
-      <script type="text/x-arduino" class="xs anim" data-t="Simulação 9 · distância no LCD I2C e no serial">
-        #include <Adafruit_LiquidCrystal.h>   // LCD I2C do Tinkercad
+      <script type="text/x-arduino" class="xs anim" data-t="Simulação 9 · distância no LCD e no serial">
+        #include <LiquidCrystal.h>          // já vem com a IDE
 
-        Adafruit_LiquidCrystal lcd(0);       // endereço 0x20
-        const byte TRIG = 9, ECHO = 10;
+        LiquidCrystal lcd(7, 6, 5, 4, 3, 2); // RS, E, D4, D5, D6, D7
+        const byte TRIG = 10, ECHO = 9;
 
         void setup() {
           pinMode(TRIG, OUTPUT);
           pinMode(ECHO, INPUT);
           Serial.begin(9600);
           lcd.begin(16, 2);
-          lcd.setBacklight(1);
           lcd.print("Distancia:");
         }
         void loop() {
@@ -2898,7 +2906,7 @@ FC.d5lcd={w:640,h:820,label:'Fluxograma do medidor de distância',
     <h2 class="title sm anim">Prática: o medidor de distância no Proteus</h2>
     <div class="two" style="grid-template-columns:1.1fr .9fr">
 <div>
-    <ol class="howto sm anim"><li>Na Arduino IDE 2, abra o código da Simulação 9 e use <b>Sketch › Exportar binário compilado</b>.</li><li>No Proteus, <b>File › New Project</b> e abra o esquema (Schematic Capture).</li><li>Em <b>Pick Devices</b> (tecla P), busque <b>Arduino Uno</b>, <b>HC-SR04</b> (biblioteca) e <b>LM016L</b> ou o LCD I2C.</li><li>Ligue os fios como no diagrama de montagem e coloque <b>GROUND</b> e <b>POWER</b>.</li><li>Duplo clique no Arduino › <b>Program File</b> › o arquivo <code>.hex</code>.</li><li>Clique em ▶ e varie a distância no potenciômetro de teste do sensor.</li></ol>
+    <ol class="howto sm anim"><li>Na Arduino IDE 2, abra o código da Simulação 9 e use <b>Sketch › Exportar binário compilado</b>.</li><li>No Proteus, <b>File › New Project</b> e abra o esquema (Schematic Capture).</li><li>Em <b>Pick Devices</b> (tecla P), busque <b>Arduino Uno</b>, <b>HC-SR04</b> (biblioteca) e <b>LM016L</b> (LCD 16×2).</li><li>Ligue os fios como no diagrama de montagem e coloque <b>GROUND</b> e <b>POWER</b>.</li><li>Duplo clique no Arduino › <b>Program File</b> › o arquivo <code>.hex</code>.</li><li>Clique em ▶ e varie a distância no potenciômetro de teste do sensor.</li></ol>
 </div>
 <div>
     <div class="cards" style="--c:1">
@@ -3176,7 +3184,7 @@ FC.m8os={w:900,h:820,label:'Fluxo de execução de uma ordem de serviço',
       <li class="pr"><b>14:15 · Aula 2</b>Arduino IDE 2: placa, porta, bibliotecas, compilação e gravação</li>
       <li class="pr"><b>15:00 · Aula 3</b>Prática: montagem do circuito de botão e LED conforme o projeto</li>
       <li class="pr"><b>16:00 · Aula 4</b>Testes de funcionamento com multímetro: continuidade, tensão e corrente</li>
-      <li class="pr"><b>16:45 · Aula 5</b>Prática: sensor HC-SR04 com LCD I2C na bancada</li>
+      <li class="pr"><b>16:45 · Aula 5</b>Prática: sensor HC-SR04 com LCD 16×2 na bancada</li>
     </ol>
   </div>
 </section>
@@ -3186,7 +3194,7 @@ FC.m8os={w:900,h:820,label:'Fluxo de execução de uma ordem de serviço',
     <h2 class="title sm anim">Materiais por bancada</h2>
     <div class="two">
 <div>
-    <table class="tbl anim" style="margin-bottom:22px"><thead><tr><th>Item</th><th>Qtd.</th></tr></thead><tbody><tr><td>Arduino Uno + cabo USB</td><td>1</td></tr><tr><td>Protoboard e jumpers</td><td>1 kit</td></tr><tr><td>LEDs e resistores de 220 Ω</td><td>3</td></tr><tr><td>Botão de pulso e resistor de 10 kΩ</td><td>2</td></tr><tr><td>Sensor ultrassônico HC-SR04</td><td>1</td></tr><tr><td>Display LCD 16×2 com módulo I2C</td><td>1</td></tr><tr><td>Multímetro digital</td><td>1</td></tr></tbody></table>
+    <table class="tbl anim" style="margin-bottom:22px"><thead><tr><th>Item</th><th>Qtd.</th></tr></thead><tbody><tr><td>Arduino Uno + cabo USB</td><td>1</td></tr><tr><td>Protoboard e jumpers</td><td>1 kit</td></tr><tr><td>LEDs e resistores de 220 Ω</td><td>3</td></tr><tr><td>Botão de pulso e resistor de 10 kΩ</td><td>2</td></tr><tr><td>Sensor ultrassônico HC-SR04</td><td>1</td></tr><tr><td>Display LCD 16×2 e potenciômetro de 10 kΩ</td><td>1 de cada</td></tr><tr><td>Multímetro digital</td><td>1</td></tr></tbody></table>
 </div>
 <div>
     <div class="cards" style="--c:1">
@@ -3229,7 +3237,7 @@ WR.m9botao={w:860,h:800,label:'Botão no pino 2 com resistor de 10 kΩ e LED no 
 </div>
 <div>
     <div class="cards" style="--c:1">
-      <div class="card anim"><h3>Bibliotecas</h3><p><b>Ferramentas › Gerenciar bibliotecas</b>: busque <i>LiquidCrystal I2C</i> e instale.</p></div>
+      <div class="card anim"><h3>Bibliotecas</h3><p>A <i>LiquidCrystal</i>, do LCD, já vem com a IDE. Outras: <b>Ferramentas › Gerenciar bibliotecas</b>, busque pelo nome e instale.</p></div>
       <div class="card anim"><h3>Exemplos</h3><p><b>Arquivo › Exemplos</b> traz programas prontos para testar a placa.</p></div>
     </div>
 </div>
@@ -3291,11 +3299,11 @@ WR.m9botao={w:860,h:800,label:'Botão no pino 2 com resistor de 10 kΩ e LED no 
     <h2 class="title sm anim">Prática B: medidor de distância com LCD</h2>
     <div class="two">
 <div>
-    <ol class="howto sm anim"><li>Monte o HC-SR04 e o LCD I2C como na Simulação 9 (dia 7).</li><li>Instale a biblioteca <b>LiquidCrystal I2C</b> e grave o mesmo programa.</li><li>Se o LCD acender sem texto, ajuste o <b>contraste</b> no trimpot do módulo.</li><li>Compare a distância mostrada com uma régua em 10, 20 e 30 cm.</li><li>Anote a diferença: é o erro do sensor.</li></ol>
+    <ol class="howto sm anim"><li>Monte o HC-SR04 e o LCD 16×2 como na Simulação 9 (dia 7), com o Arduino desligado.</li><li>Confira os fios do LCD um por um: RS, E e D4 a D7.</li><li>Grave o mesmo programa (a biblioteca <b>LiquidCrystal</b> já vem com a IDE).</li><li>Se o LCD acender sem texto, gire o <b>potenciômetro do contraste</b> (V0).</li><li>Compare a distância mostrada com uma régua em 10, 20 e 30 cm.</li><li>Anote a diferença: é o erro do sensor.</li></ol>
 </div>
 <div>
     <div class="cards" style="--c:1">
-      <div class="card anim"><h3>Endereço I2C</h3><p>O módulo costuma usar 0x27 ou 0x3F. Se nada aparecer, troque o endereço no código.</p></div>
+      <div class="card anim"><h3>Ligação paralela</h3><p>Seis fios de sinal mais alimentação, contraste e luz de fundo. Um fio trocado mostra caracteres estranhos ou nada.</p></div>
     </div>
 </div>
     </div>
@@ -3309,7 +3317,7 @@ WR.m9botao={w:860,h:800,label:'Botão no pino 2 com resistor de 10 kΩ e LED no 
     <table class="tbl anim">
       <thead><tr><th>Sintoma</th><th>O que verificar</th></tr></thead>
       <tbody>
-        <tr><td>LCD aceso, sem texto</td><td>Contraste no trimpot; endereço 0x27 ou 0x3F</td></tr>
+        <tr><td>LCD aceso, sem texto</td><td>Potenciômetro do contraste (V0); RW no GND</td></tr><tr><td>LCD com caracteres estranhos</td><td>RS, E e D4 a D7 na ordem do código</td></tr>
         <tr><td>Botão não faz nada</td><td>Pernas na mesma fileira da protoboard? Use pernas em diagonal. <code>INPUT_PULLUP</code>?</td></tr>
         <tr><td>Distância sempre 999 ou 0</td><td>TRIG e ECHO trocados? VCC no 5 V? Sensor encostado em algo?</td></tr>
         <tr><td>Monitor com símbolos estranhos</td><td>Velocidade do monitor diferente de 9600</td></tr>
@@ -3330,7 +3338,7 @@ WR.m9botao={w:860,h:800,label:'Botão no pino 2 com resistor de 10 kΩ e LED no 
   {q:'Como se mede a corrente de um LED com o multímetro?',o:['Em paralelo com o LED', 'Em série com o LED, no borne de mA', 'Com o circuito desligado', 'Na escala de continuidade'],a:1,e:' A corrente precisa passar por dentro do multímetro.'},
   {q:'A gravação falha e há um fio no pino D0. Qual é a causa?',o:['O D0 está queimado', 'D0 e D1 são a serial usada na gravação', 'Falta biblioteca', 'A placa está errada'],a:1,e:' Desligue os fios de D0 e D1 para gravar.'},
   {q:'Na protoboard, os furos de uma mesma coluna central:',o:['Não se ligam', 'Ligam-se entre si (5 furos)', 'Ligam-se ao 5 V', 'Ligam-se ao lado oposto do canal'],a:1,e:' Cada coluna liga 5 furos; o canal central separa os lados.'},
-  {q:'O LCD I2C acende, mas não mostra texto. O primeiro ajuste é:',o:['Trocar o Arduino', 'O contraste no trimpot', 'A velocidade do monitor', 'O resistor do LED'],a:1,e:' Contraste errado deixa o texto invisível.'}
+  {q:'O LCD acende, mas não mostra texto. O primeiro ajuste é:',o:['Trocar o Arduino', 'O potenciômetro do contraste (V0)', 'A velocidade do monitor', 'O resistor do LED'],a:1,e:' Contraste errado deixa o texto invisível.'}
 ],opts:{end:'Próximo encontro: relé, cargas e melhoria contínua.'}};</script>
 
 <section class="slide closing" data-theme="Dia 9 · Encerramento">
@@ -3532,7 +3540,7 @@ FC.d6m1={w:880,h:800,label:'Fluxograma da montagem 1',
 <section class="slide" data-theme="Dia 10 · Melhoria contínua">
   <div class="content">
     <h2 class="title sm anim">Soluções alternativas de componentes e ferramentas</h2>
-    <table class="tbl sm anim" style="margin-bottom:22px"><thead><tr><th>Necessidade</th><th>Opção usual</th><th>Alternativa</th><th>Quando usar a alternativa</th></tr></thead><tbody><tr><td>Acionar carga CA</td><td>Relé eletromecânico</td><td>Relé de estado sólido (SSR)</td><td>Muitos acionamentos por minuto; sem ruído</td></tr><tr><td>Acionar motor CC pequeno</td><td>Módulo relé</td><td>Transistor + diodo</td><td>Controle de velocidade por PWM</td></tr><tr><td>Medir distância</td><td>HC-SR04</td><td>Sensor infravermelho ou laser (ToF)</td><td>Alvos pequenos, ambientes com eco</td></tr><tr><td>Mostrar dados</td><td>LCD 16×2 I2C</td><td>Monitor serial ou display OLED</td><td>Depuração ou pouco espaço</td></tr><tr><td>Ligações provisórias</td><td>Protoboard</td><td>Placa perfurada soldada</td><td>Instalação definitiva, com vibração</td></tr></tbody></table>
+    <table class="tbl sm anim" style="margin-bottom:22px"><thead><tr><th>Necessidade</th><th>Opção usual</th><th>Alternativa</th><th>Quando usar a alternativa</th></tr></thead><tbody><tr><td>Acionar carga CA</td><td>Relé eletromecânico</td><td>Relé de estado sólido (SSR)</td><td>Muitos acionamentos por minuto; sem ruído</td></tr><tr><td>Acionar motor CC pequeno</td><td>Módulo relé</td><td>Transistor + diodo</td><td>Controle de velocidade por PWM</td></tr><tr><td>Medir distância</td><td>HC-SR04</td><td>Sensor infravermelho ou laser (ToF)</td><td>Alvos pequenos, ambientes com eco</td></tr><tr><td>Mostrar dados</td><td>LCD 16×2 paralelo</td><td>LCD com módulo I2C ou display OLED</td><td>Poucos pinos livres no Arduino</td></tr><tr><td>Ligações provisórias</td><td>Protoboard</td><td>Placa perfurada soldada</td><td>Instalação definitiva, com vibração</td></tr></tbody></table>
     <p class="note anim">A alternativa precisa ter especificações compatíveis: tensão, corrente e sinal de controle, conferidas no datasheet.</p>
 
   </div>
@@ -3582,7 +3590,7 @@ FC.d6m1={w:880,h:800,label:'Fluxograma da montagem 1',
   {q:'No módulo relé, a lâmpada deve ligar quando o relé atua. Em quais bornes ela é ligada?',o:['COM e NF', 'COM e NA', 'NA e NF', 'VCC e GND'],a:1,e:' NA (normalmente aberto) fecha com COM quando o relé atua.'},
   {q:'Qual ferramenta da qualidade organiza as causas de um defeito em 6 grupos?',o:['Checklist', 'PDCA', 'Diagrama de Ishikawa', 'Cronograma'],a:2,e:' Método, máquina, material, mão de obra, medida e meio ambiente.'},
   {q:'Onde descartar a borra de solda?',o:['Lixo comum', 'Recipiente fechado de resíduo perigoso', 'Pia', 'Coleta de papel'],a:1,e:' Contém metais pesados: é resíduo perigoso.'},
-  {q:'Para acionar um motor CC pequeno com controle de velocidade por PWM, a melhor alternativa ao relé é:',o:['Transistor com diodo', 'Relé de estado sólido CA', 'LCD I2C', 'Sensor ultrassônico'],a:0,e:' O transistor chaveia rápido o suficiente para o PWM; o diodo protege contra o pico do motor.'}
+  {q:'Para acionar um motor CC pequeno com controle de velocidade por PWM, a melhor alternativa ao relé é:',o:['Transistor com diodo', 'Relé de estado sólido CA', 'LCD 16×2', 'Sensor ultrassônico'],a:0,e:' O transistor chaveia rápido o suficiente para o PWM; o diodo protege contra o pico do motor.'}
 ],opts:{end:'Próximo encontro: avaliação prática (20 pontos).'}};</script>
 
 <section class="slide closing" data-theme="Dia 10 · Encerramento">
@@ -3855,7 +3863,7 @@ const dayCards=slides.filter(s=>s.dataset.day).map(s=>{
   const d=Object.fromEntries(['day','date','title','badge','kind'].map(k=>[k,escDay(s.dataset[k])]));const cls=d.kind==='av'?' av':d.kind==='pr'?' pr':'';
   return `<button class="daycard${cls}" data-go="${d.day}"><span class="n">Dia ${d.day}</span><span class="d">${d.date}</span><span class="t">${d.title}</span>${d.badge?`<span class="k">${d.badge}</span>`:''}</button>`;}).join('');
 const nDays=slides.filter(s=>s.dataset.day).length;
-$$(document,'.daymap').forEach(m=>{m.innerHTML=dayCards;if(nDays>15)m.classList.add('dense');});  // long UCs (Ômega: 42 meetings)
+$$(document,'.daymap').forEach(m=>{m.innerHTML=dayCards;if(nDays>15)m.classList.add('dense');else if(nDays>10)m.classList.add('mid');});  // long UCs (Ômega: 42 meetings)
 document.addEventListener('click',e=>{const b=e.target.closest('[data-go]');if(b)jumpDay(b.dataset.go);});
 document.getElementById('menuBtn').addEventListener('click',()=>menu.classList.contains('open')?closeMenu():openMenu());
 $(menu,'.close').addEventListener('click',closeMenu);
@@ -4094,6 +4102,14 @@ P.lcd=(x,y,o={})=>{const s=`<rect x="${x}" y="${y}" width="440" height="160" rx=
   <text x="${x+86}" y="${y+70}" font-family="JetBrains Mono, monospace" font-size="26" fill="#C8F0FF">${esc(o.l1||'Distancia:')}</text><text x="${x+86}" y="${y+112}" font-family="JetBrains Mono, monospace" font-size="26" fill="#C8F0FF">${esc(o.l2||'23.5 cm')}</text>
   ${['GND','VCC','SDA','SCL'].map((t,i)=>`<text x="${x+12}" y="${y+36+i*32}" font-size="14" font-weight="700" fill="#fff">${t}</text>`).join('')}`+(o.l?lbl(x+220,y-16,o.l):'');
   return {s,pins:{GND:[x,y+32],VCC:[x,y+64],SDA:[x,y+96],SCL:[x,y+128]}};};
+P.lcdp=(x,y,o={})=>{const nm=['VSS','VDD','V0','RS','RW','E','D0','D1','D2','D3','D4','D5','D6','D7','A','K'],pins={};
+  let s=`<rect x="${x}" y="${y}" width="520" height="170" rx="10" fill="#2F9E44" stroke="#1E7031" stroke-width="3"/>
+  <rect x="${x+50}" y="${y+18}" width="420" height="96" rx="6" fill="#1A2366"/>
+  <text x="${x+70}" y="${y+56}" font-family="JetBrains Mono, monospace" font-size="28" fill="#C8F0FF">${esc(o.l1||'Distancia:')}</text><text x="${x+70}" y="${y+98}" font-family="JetBrains Mono, monospace" font-size="28" fill="#C8F0FF">${esc(o.l2||'23.5 cm')}</text>`;
+  nm.forEach((t,i)=>{const px=x+35+i*30;pins[t]=[px,y+190];
+    s+=`<text x="${px}" y="${y+156}" font-size="11" font-weight="700" fill="#fff" text-anchor="middle">${t}</text><path d="M${px} ${y+170} V${y+190}" stroke="#8A92A6" stroke-width="4"/>`;});
+  if(o.l)s+=lbl(x+260,y-16,o.l);
+  return {s,pins};};
 P.trilho=(x,y,o={})=>{const w=o.w||600;const s=`<rect x="${x}" y="${y-22}" width="${w}" height="64" rx="8" fill="#F5F6F9" stroke="#D3D8E3" stroke-width="3"/>
   <line x1="${x+14}" y1="${y}" x2="${x+w-14}" y2="${y}" stroke="#D62828" stroke-width="3" stroke-dasharray="2 10" stroke-linecap="round"/>
   <line x1="${x+14}" y1="${y+22}" x2="${x+w-14}" y2="${y+22}" stroke="#2B6CD9" stroke-width="3" stroke-dasharray="2 10" stroke-linecap="round"/>
